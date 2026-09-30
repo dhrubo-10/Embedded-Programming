@@ -1,3 +1,8 @@
+.pio
+.vscode/
 *.bin
 *.elf
 *.o
+test/
+
+
