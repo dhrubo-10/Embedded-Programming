@@ -1,16 +1,16 @@
 #include <stdint.h>
 
 /* RCC */
-#define RCC_BASE        0x40021000U
-#define RCC_APB2ENR     (*(volatile uint32_t *)(RCC_BASE + 0x18))
+#define RCC_BASE            0x40021000U
+#define RCC_APB2ENR         (*(volatile uint32_t *)(RCC_BASE + 0x18))
+#define RCC_APB2ENR_IOPAEN  (1U << 2)
 
-/* GPIOC */
-#define GPIOC_BASE      0x40011000U
-#define GPIOC_CRH       (*(volatile uint32_t *)(GPIOC_BASE + 0x04))
-#define GPIOC_ODR       (*(volatile uint32_t *)(GPIOC_BASE + 0x0C))
+/* GPIOA */
+#define GPIOA_BASE          0x40010800U
+#define GPIOA_CRL           (*(volatile uint32_t *)(GPIOA_BASE + 0x00))
+#define GPIOA_ODR           (*(volatile uint32_t *)(GPIOA_BASE + 0x0C))
 
-#define RCC_APB2ENR_IOPCEN  (1U << 4)
-#define PC13                (1U << 13)
+#define PA1                 (1U << 1)
 
 static void delay(volatile uint32_t n) {
     while (n--) {
@@ -19,15 +19,15 @@ static void delay(volatile uint32_t n) {
 }
 
 int main(void) {
-    /* enable GPIOC clock */
-    RCC_APB2ENR |= RCC_APB2ENR_IOPCEN;
+    /* enable GPIOA clock */
+    RCC_APB2ENR |= RCC_APB2ENR_IOPAEN;
 
-    /* PC13: output push-pull 10MHz — CRH bits [23:20] = 0b0001 */
-    GPIOC_CRH &= ~(0xFU << 20);
-    GPIOC_CRH |=  (0x1U << 20);
+    /* PA1: output push-pull 10MHz. CRL bits [7:4] = 0b0001 */
+    GPIOA_CRL &= ~(0xFU << 4);
+    GPIOA_CRL |=  (0x1U << 4);
 
-  while (1) {
-        GPIOC_ODR ^= PC13;
+    while (1) {
+        GPIOA_ODR ^= PA1;
         delay(1000000);
     }
 }
