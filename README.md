@@ -1,3 +1,3 @@
 # Embedded-Programming
 Embedded-Systems
-Rn this repo only containg STM32 programming
+Rn this repo only contains STM32 programming
