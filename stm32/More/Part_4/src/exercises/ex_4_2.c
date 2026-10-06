@@ -66,22 +66,61 @@ void ex_4_2_run(void)
     /*
         For SOS.: we need ... --- ...
         so:
+        // S
+        morse_dot();
+        morse_dot();
+        morse_dot();
+        morse_letter_gap();
+        
+        // 0
+        morse_dash();
+        morse_dash();
+        morse_dash();
+        morse_letter_gap();
+        
+        // S
+        morse_dot();
+        morse_dot();
+        morse_dot();
+     //    morse_letter_gap();
+
+     for DHRUBO. -.. .... .-. ..- -... ---
     */
-   // S
-   morse_dot();
-   morse_dot();
-   morse_dot();
-   morse_letter_gap();
-   
-   // 0
-   morse_dash();
-   morse_dash();
-   morse_dash();
-   morse_letter_gap();
-   
-   // S
-   morse_dot();
-   morse_dot();
-   morse_dot();
-//    morse_letter_gap();
+
+    // D
+    morse_dash();
+    morse_dot();
+    morse_dot();
+    morse_letter_gap();
+
+    // H
+    morse_dot();
+    morse_dot();
+    morse_dot();
+    morse_dot();
+    morse_letter_gap();
+    
+    // R
+    morse_dot();
+    morse_dash();
+    morse_dot();
+    morse_letter_gap();
+    
+    /**u */
+    morse_dot();
+    morse_dot();
+    morse_dash();
+    morse_letter_gap();
+
+    // B
+    morse_dash();
+    morse_dot();
+    morse_dot();
+    morse_dot();
+    morse_letter_gap();
+    
+    // O
+    morse_dash();
+    morse_dash();
+    morse_dash();
 }
