@@ -9,6 +9,7 @@
 int main(void)
 {
     board_init();
-    ex_4_1_run(); // ex4.1
+    // ex_4_1_run(); // ex4.1
+    ex_4_2_run(); // morse code ex4.2
     while (1) { }
 }
