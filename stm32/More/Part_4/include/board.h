@@ -2,6 +2,7 @@
 #define BOARD_H
 
 #include "stm32f1xx_hal.h"
+extern UART_HandleTypeDef huart1;
 
 // PC13 LED is active low: RESET = on, SET = off 
 #define LED_ON()   HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET)
