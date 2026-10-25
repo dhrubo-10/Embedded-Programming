@@ -1,6 +1,3 @@
-#include "board.h"
-#include "exercises.h"
-
 /* EX-5.2 — Raw Register Blink
  *
  * Rules: no HAL_GPIO_Init / WritePin / TogglePin, no __HAL_RCC_GPIOC_CLK_ENABLE.
@@ -26,17 +23,27 @@
  *     trace_msg("BSRR write: LED ON");
  */
 
+#include "board.h"
+#include "exercises.h"
+#define DELAY 500
 void ex_5_2_run(void)
 {
-    RCC->APB2ENR != (1U << 4); // IOPCEN Bit
-    /* TODO: configure PC13 as output push-pull 2 MHz (raw) */
+    RCC->APB2ENR |= (1U << 4); // IOPCEN Bit
+    // since im on PC13 -> CRH
+    GPIOC->CRH &= ~(0xFU << 20); // clears the bit
+    GPIOC->CRH |=  (0x2U << 20); // 
+    trace_reg("RCC->APB2ENR", RCC->APB2ENR);
+    trace_reg("GPIOC->CRH", GPIOC->CRH);
     
-
-    /* TODO: start with the LED off (BSRR) */
-
+    GPIOC->BSRR = (1U << 13);
     while (1)
     {
-        /* TODO: LED ON  via BSRR, then HAL_Delay(500) */
+        GPIOC->BSRR = (1U << 29);
+        trace_msg("BSRR write: LED ON");
+        HAL_Delay(DELAY);
         /* TODO: LED OFF via BSRR, then HAL_Delay(500) */
+        GPIOC->BSRR = (1U << 13);
+        trace_msg("BSRR write: LED OFF");
+        HAL_Delay(DELAY);
     }
 }
